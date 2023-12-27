@@ -27,11 +27,11 @@ public class DefaultUpdateProductUseCase extends UpdateProductUseCase {
             productGateway.update(product);
         } catch (final Throwable t) {
             throw InternalErrorException.with(
-                    "An error on creating product was observed [product:%s]".formatted(productId),
+                    "An error on updating product was observed [product:%s]".formatted(productId),
                     t
             );
         }
 
-        return UpdateProductOutput.with(product.getId());
+        return UpdateProductOutput.with(productId);
     }
 }

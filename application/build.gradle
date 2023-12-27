@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group = 'br.com.zydon'
+
+if (project.hasProperty('version')) {
+    version = version
+} else {
+    version = '1.0.0-SNAPSHOT'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url = uri("https://maven.pkg.github.com/zydontecnologia/mvn")
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME_GITHUB")
+            password = project.findProperty("gpr.token") ?: System.getenv("TOKEN_GITHUB")
+        }
+    }
+}
+
+dependencies {
+    implementation(project(":domain"))
+
+    implementation 'br.com.zydon:commons-domain:+'
+    implementation 'br.com.zydon:commons-application:+'
+
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.26'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}

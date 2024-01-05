@@ -1,0 +1,78 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.2'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'br.com.zydon'
+
+if (project.hasProperty('version')) {
+    version = version
+} else {
+    version = '1.0.0-SNAPSHOT'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url = uri("https://maven.pkg.github.com/zydontecnologia/mvn")
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME_GITHUB")
+            password = project.findProperty("gpr.token") ?: System.getenv("TOKEN_GITHUB")
+        }
+    }
+}
+
+dependencies {
+    implementation(project(":domain"))
+    implementation(project(":application"))
+
+    implementation 'br.com.zydon:commons-domain:+'
+    implementation 'br.com.zydon:commons-application:+'
+    implementation 'br.com.zydon:commons-infrastructure:+'
+
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation('org.postgresql:postgresql')
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation 'software.amazon.awssdk:regions:2.20.109'
+    implementation 'com.google.common.inject:inject-common:1.0'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+
+    implementation('org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.0')
+
+    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
+
+    implementation('org.springframework.boot:spring-boot-starter-web') {
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+    implementation('org.springframework.boot:spring-boot-starter-undertow')
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+
+    implementation('org.yaml:snakeyaml:1.33') {
+        version { strictly("1.33") }
+    }
+
+    implementation 'org.flywaydb:flyway-core:9.21.1'
+
+    implementation 'com.amazonaws:aws-java-sdk:1.12.540'
+    implementation 'com.google.guava:guava:31.1-jre'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.26'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+}
+
+test {
+    useJUnitPlatform()
+}

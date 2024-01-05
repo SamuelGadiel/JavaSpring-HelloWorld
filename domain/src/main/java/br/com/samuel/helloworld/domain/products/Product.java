@@ -39,15 +39,22 @@ public class Product extends AggregateRoot<ProductID> {
     }
 
 
-    public static Product with(Product product) {
+    public static Product with(
+            final ProductID productID,
+            final String name,
+            final Double price,
+            final Integer stock,
+            final Instant createdAt,
+            final Instant updatedAt
+    ) {
         return new Product(
-                product.getId(),
-                product.getDomainEvents(),
-                product.getName(),
-                product.getPrice(),
-                product.getStock(),
-                product.getCreatedAt(),
-                product.getUpdatedAt()
+                productID,
+                null,
+                name,
+                price,
+                stock,
+                createdAt,
+                updatedAt
         );
     }
 

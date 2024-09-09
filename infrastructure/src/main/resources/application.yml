@@ -1,9 +1,6 @@
 spring:
-  security:
-    user:
-      name: admin
-      password: 123456
-      roles: ADMIN
+  application:
+    name: "Hello World"
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -16,16 +13,3 @@ spring:
       hibernate:
         format_sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-management:
-  security:
-    enabled: true
-  endpoints:
-    enabled-by-default: true
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    prometheus:
-      enabled: true
-    metrics:
-      enabled: true

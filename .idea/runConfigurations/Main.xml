@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Main" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <envs>
+      <env name="USERNAME_GITHUB" value="SamuelGadiel" />
+      <env name="TOKEN_GITHUB" value="YOUR_PAT_TOKEN HERE" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="br.com.samuel.helloworld.infrastructure.Main" />
+    <module name="HelloWorld.infrastructure.main" />
+    <option name="VM_PARAMETERS" value="-javaagent:$USER_HOME$/projetos/zydon-monitoring/agents/open-telemetry/opentelemetry-javaagent.jar -Dotel.metrics.exporter=prometheus -Dotel.exporter.prometheus.port=9464 -Dotel.logs.exporter=otlp -Dotel.exporter.otlp.logs.endpoint=&quot;http://localhost:4320&quot; -Dotel.traces.exporter=otlp -Dotel.exporter.otlp.traces.endpoint=&quot;http://localhost:4320&quot;" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

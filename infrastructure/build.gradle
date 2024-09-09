@@ -41,6 +41,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
 
+//    implementation('io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations:1.32.0')
     implementation('org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.0')
 
     implementation 'com.squareup.okhttp3:okhttp:4.11.0'
@@ -49,10 +50,6 @@ dependencies {
         exclude module: 'spring-boot-starter-tomcat'
     }
     implementation('org.springframework.boot:spring-boot-starter-undertow')
-
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'io.micrometer:micrometer-registry-prometheus'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
 
     implementation 'org.springframework.boot:spring-boot-starter-freemarker'
 
@@ -71,6 +68,10 @@ dependencies {
 
     testCompileOnly 'org.projectlombok:lombok:1.18.26'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+}
+
+bootJar {
+    archiveFileName = "main.jar"
 }
 
 test {

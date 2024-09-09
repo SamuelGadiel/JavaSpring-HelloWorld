@@ -33,6 +33,7 @@ import br.com.samuel.helloworld.infrastructure.products.presenters.ProductApiPre
 import br.com.zydon.commons.domain.exceptions.NotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,6 +44,7 @@ import java.net.URI;
 @RestController
 @RequiredArgsConstructor
 @Validated
+@Log
 public class ProductsController implements ProductsAPI {
 
     private final CreateProductUseCase createProductUseCase;
@@ -54,6 +56,10 @@ public class ProductsController implements ProductsAPI {
 
     @Override
     public ResponseEntity<CreateProductResponse> create(@Valid @RequestBody CreateProductRequest createProductRequest) {
+        log.info("CREATE");
+        log.info("REQUEST:");
+        log.info(createProductRequest.toString());
+
         final CreateProductCommand command = CreateProductCommand.with(
                 createProductRequest.name(),
                 createProductRequest.price(),
